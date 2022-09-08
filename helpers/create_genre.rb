@@ -10,4 +10,10 @@ class CreateGenre < Create
     puts 'Genre created seccussfuly' unless genre.nil?
     genre
   end
+
+  def self.create_object(genres)
+    genres.map do |genre|
+      Genre.new(genre[:name], id: genre[:id])
+    end
+  end
 end

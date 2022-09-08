@@ -10,4 +10,10 @@ class CreateSource < Create
     puts 'Source created seccussfuly' unless source.nil?
     source
   end
+
+  def self.create_object(sources)
+    sources.map do |source|
+      Source.new(source[:name], source[:id])
+    end
+  end
 end

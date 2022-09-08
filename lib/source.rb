@@ -12,4 +12,12 @@ class Source
     @items << item
     item.source = self
   end
+
+  def to_hash
+    {
+      class: 'Source',
+      name: @name,
+      id: @id
+    }
+  end
 end

@@ -17,10 +17,11 @@ class MusicAlbum < Item
       archived: @archived
 
     }
-    hash[:label] = @label.id unless @label.nil?
-    hash[:source] = @source.id unless @source.nil?
-    hash[:author] = @author.id unless @author.nil?
-    hash[:genre] = @genre.id unless @genre.nil?
+    hash[:label_id] = @label.id unless @label.nil?
+    hash[:source_id] = @source.id unless @source.nil?
+    hash[:author_id] = @author.id unless @author.nil?
+    hash[:genre_id] = @genre.id unless @genre.nil?
+    hash
   end
 
   def can_be_archived?

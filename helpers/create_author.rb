@@ -14,4 +14,10 @@ class CreateAuthor < Create
 
     author
   end
+
+  def self.create_object(authors)
+    authors.map do |author|
+      Author.new(author[:file_name], author[:last_name], id: author[:id])
+    end
+  end
 end

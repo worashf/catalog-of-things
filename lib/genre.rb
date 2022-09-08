@@ -12,4 +12,12 @@ class Genre
     @items << item
     item.genre = self
   end
+
+  def to_hash
+    {
+      class: 'Genre',
+      name: @name,
+      id: @id
+    }
+  end
 end

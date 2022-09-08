@@ -12,4 +12,10 @@ class CreateLabel < Create
     puts 'Label created seccussfuly' unless label.nil?
     label
   end
+
+  def self.create_object(labels)
+    labels.map do |label|
+      Label.new(label[:title], label[:color], id: label[:id])
+    end
+  end
 end

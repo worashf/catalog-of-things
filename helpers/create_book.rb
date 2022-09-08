@@ -27,4 +27,20 @@ class CreateBook < Create
     puts 'Book created seccussfuly' unless book.nil?
     book
   end
+
+  def self.create_object(books, authors, labels, genres, sources)
+    books.map do |book|
+      new_book = Book.new(book[:publisher], book[:cover_state],
+                          book[:published_date], archived: book[:archived], id: book[:id])
+      label = labels.find { |l| l.id == book[:label_id] }
+      new_book.label = label
+      source = sources.find { |s| s.id == book[:source_id] }
+      new_book.source = source
+      genre = genres.find { |g| g.id == book[:genre_id] }
+      new_book.genre = genre
+      author = authors.find { |au| au.id == book[:author_id] }
+      new_book.author = author
+      new_book
+    end
+  end
 end

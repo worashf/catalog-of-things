@@ -14,4 +14,13 @@ class Author
     item.author = self
     true
   end
+
+  def to_hash
+    {
+      class: 'Author',
+      first_name: @file_name,
+      last_name: @last_name,
+      id: @id
+    }
+  end
 end

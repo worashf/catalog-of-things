@@ -31,4 +31,21 @@ class CreateMusicAlbum < Create
     music_album.genre = genre
     music_album
   end
+
+  def self.create_object(music_albums, authors, labels, genres, sources)
+    music_albums.map do |m|
+      new_music = AusicAlbum.new(
+        m[:published_date], on_spotify: m[:on_spotify], archived: m[:archived], id: m[:id]
+      )
+      label = labels.find { |l| l.id == m[:label_id] }
+      new_music.label = label
+      source = sources.find { |s| s.id == m[:source_id] }
+      new_music.source = source
+      genre = genres.find { |g| g.id == m[:genre_id] }
+      new_music.genre = genre
+      author = authors.find { |au| au.id == m[:author_id] }
+      new_music.author = author
+      new_music
+    end
+  end
 end

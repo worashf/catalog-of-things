@@ -31,4 +31,20 @@ class CreateMovie < Create
     movie.genre = genre
     movie
   end
+
+  def self.create_object(movies, authors, labels, genres, sources)
+    movies.map do |movie|
+      new_movie = Movie.new(movie[:published_date], silent: movie[:silent],
+                                                    archived: movie[:archived], id: movie[:id])
+      label = labels.find { |l| l.id == movie[:label_id] }
+      new_movie.label = label
+      source = sources.find { |s| s.id == movie[:source_id] }
+      new_movie.source = source
+      genre = genres.find { |g| g.id == movie[:genre_id] }
+      new_movie.genre = genre
+      author = authors.find { |au| au.id == movie[:author_id] }
+      new_movie.author = author
+      new_movie
+    end
+  end
 end

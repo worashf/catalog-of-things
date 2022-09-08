@@ -13,4 +13,13 @@ class Label
     @items << item
     item.label = self
   end
+
+  def to_hash
+    {
+      class: 'Label',
+      title: @title,
+      color: @color,
+      id: @id
+    }
+  end
 end
