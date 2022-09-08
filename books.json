@@ -1,0 +1,18 @@
+[
+  {
+    "class": "Book",
+    "id": 260,
+    "publisher": null,
+    "cover_state": null,
+    "published_date": null,
+    "archived": null
+  },
+  {
+    "class": "Book",
+    "id": 746,
+    "publisher": null,
+    "cover_state": null,
+    "published_date": null,
+    "archived": null
+  }
+]

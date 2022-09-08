@@ -13,7 +13,7 @@ class CreateSource < Create
 
   def self.create_object(sources)
     sources.map do |source|
-      Source.new(source[:name], source[:id])
+      Source.new(source[:name], id: source[:id])
     end
   end
 end

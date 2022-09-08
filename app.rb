@@ -11,6 +11,7 @@ require_relative 'helpers/display/list_genre'
 require_relative 'helpers/display/list_label'
 require_relative 'helpers/display/list_source'
 require_relative 'helpers/display/list_author'
+require_relative 'helpers/preserve/storage'
 class App
   def initialize
     @books = []
@@ -21,9 +22,32 @@ class App
     @genres = []
     @labels = []
     @sources = []
+    load_data
   end
 
-  def load_data; end
+  def load_data
+    @authors = CreateAuthor.create_object(Storage.new('authors').load_data)
+    @labels = CreateLabel.create_object(Storage.new('labels').load_data)
+    @sources = CreateSource.create_object(Storage.new('sources').load_data)
+    @genres = CreateGenre.create_object(Storage.new('genres').load_data)
+    @books = CreateBook.create_object(Storage.new('books').load_data, @authors, @labels, @genres, @sources)
+    @games = CreateGame.create_object(Storage.new('games').load_data, @authors, @labels, @genres, @sources)
+    @movies = CreateMovie.create_object(Storage.new('movies').load_data, @authors, @labels, @genres, @sources)
+    @music_albums = CreateMusicAlbum.create_object(Storage.new('music_albums').load_data, @authors, @labels, @genres,
+                                                   @sources)
+  end
+
+  def quit
+    Storage.new('books').save(@books)
+    Storage.new('labels').save(@labels)
+    Storage.new('genres').save(@genres)
+    Storage.new('music_albums').save(@music_albums)
+    Storage.new('authors').save(@authors)
+    Storage.new('games').save(@games)
+    Storage.new('sources').save(@sources)
+    Storage.new('movies').save(@movies)
+    exit
+  end
 
   def display_menu
     menu = Menu.new
@@ -36,7 +60,7 @@ class App
     elsif [*9..12].include? selected_menu
       adding_option(selected_menu)
     elsif selected_menu == 13
-      quit(selected_menu)
+      quit
     else
       puts 'Invald options'
     end
