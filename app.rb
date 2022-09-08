@@ -23,9 +23,11 @@ class App
     @sources = []
   end
 
+  def load_data; end
+
   def display_menu
     menu = Menu.new
-    menu_options = menu.list_menu
+    menu.list_menu
     selected_menu = gets.chomp.to_i
     if [*1..4].include? selected_menu
       listing_child_option(selected_menu)
