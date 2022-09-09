@@ -23,7 +23,7 @@ class CreateMovie < Create
     when 'F', 'f', 'false', 'False'
       silent = false
     end
-    movie = Movie.new(published_date, silent)
+    movie = Movie.new(published_date, silent: silent)
 
     movie.label = label
     movie.source = source
